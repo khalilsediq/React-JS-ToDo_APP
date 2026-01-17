@@ -15,7 +15,7 @@ const App = () => {
 
   return (
     <>
-      <h1>ToDo App 0</h1>
+      <h1>Counter App {num}</h1>
       <button onClick={addCounter}>+</button>
       <button onClick={lessCounter}>-</button>
     </>

@@ -6,11 +6,18 @@ const App = () => {
 
   const addCounter = () => {
     useNum(num + 1);
-    console.log(num);
+    console.log("Adding Num", num);
   };
   const lessCounter = () => {
-    useNum(num - 1);
-    console.log(num);
+    if (num === 0) {
+      alert("You alerady At 0")
+      
+    }
+    else{
+      useNum(num - 1)
+    }
+    console.log("lessing your", {num} );
+    
   };
 
   return (

@@ -42,7 +42,7 @@ function App() {
   const addTodo = (event) => {
     event.preventDefault();
     console.log(`Title: ${title}`);
-    console.log(`Description: ${description}` );
+    console.log(`Description: ${description}`);
 
     mytodo.push({
       title,
@@ -54,23 +54,23 @@ function App() {
     setDescription("");
   };
 
-  const deletTodo = (index)=>{
-    console.log("Delete ToDo" , index)
-    mytodo.splice(index, 1)
-    setTodo([...mytodo])
-  }
+  const deletTodo = (index) => {
+    console.log("Delete ToDo", index);
+    mytodo.splice(index, 1);
+    setTodo([...mytodo]);
+  };
 
-  const editTodo = (index)=>{
+  const editTodo = (index) => {
     console.log("Todo Edite", index);
-    const edt = prompt("Update Your ToDO", mytodo[index].title)
-    mytodo[index].title = edt
-    setTodo([...mytodo])
-  }
+    const edt = prompt("Update Your ToDO", mytodo[index].title);
+    mytodo[index].title = edt;
+    setTodo([...mytodo]);
+  };
 
   return (
     <>
       <h1>Hello World + ToDo APP</h1>
-      <form onSubmit={addTodo} >
+      <form onSubmit={addTodo}>
         <input
           value={title}
           onChange={(e) => {
@@ -88,28 +88,39 @@ function App() {
         <button>Add Todo</button>
       </form>
 
-
-
       <div>
-          {mytodo.length > 0 ? mytodo.map((item, index)=> {
-            return <div key={index}>
-
-            <h1>No {index + 1} </h1>
-            <p>Title: {item.title}</p>
-            <p>Description: {item.description}</p>
-            <button onClick={() =>{
-              editTodo(index)
-            }}> Edit </button>
-            <button onClick={()=>{
-              deletTodo(index)
-            }}> Delete </button>
-
-            </div>
-          }) : <h1>No Todo Found </h1>}
-
-           </div>
-   </>
-  )
+        {mytodo.length > 0 ? (
+          mytodo.map((item, index) => {
+            return (
+              <div key={index}>
+                <h1>No {index + 1} </h1>
+                <p>Title: {item.title}</p>
+                <p>Description: {item.description}</p>
+                <button
+                  onClick={() => {
+                    editTodo(index);
+                  }}
+                >
+                  {" "}
+                  Edit{" "}
+                </button>
+                <button
+                  onClick={() => {
+                    deletTodo(index);
+                  }}
+                >
+                  {" "}
+                  Delete{" "}
+                </button>
+              </div>
+            );
+          })
+        ) : (
+          <h1>No Todo Found </h1>
+        )}
+      </div>
+    </>
+  );
 }
 
 export default App;

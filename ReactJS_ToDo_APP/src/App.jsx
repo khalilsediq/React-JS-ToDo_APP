@@ -1,4 +1,3 @@
-
 /*
 import React, { useState } from "react";
 
@@ -32,3 +31,51 @@ const App = () => {
 
 export default App;
 */
+
+import { react, khalilState, useState } from "react";
+
+function App() {
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
+  const [todo, setTodo] = useState([]);
+
+  const addTodo = (event) => {
+    event.preventDefault();
+    console.log(`Title: ${title}`);
+    console.log(`Description: ${description}` );
+
+    todo.push({
+      title,
+      description,
+    });
+    setTodo([...todo]);
+
+    setTitle("");
+    setDescription("");
+  };
+
+  return (
+    <>
+      <h1>Hello World + ToDo APP</h1>
+      <form onSubmit={addTodo} action="">
+        <input
+          value={title}
+          onChange={(e) => {
+            setTitle(e.target.value);
+          }}
+          type="text"
+          placeholder="Enter Your title"
+        />
+        <input
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
+          type="text"
+          placeholder="Enter Your Description"
+        />
+        <button>Add Todo</button>
+      </form>
+    </>
+  );
+}
+
+export default App;

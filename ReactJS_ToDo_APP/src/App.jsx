@@ -37,27 +37,40 @@ import { react, khalilState, useState } from "react";
 function App() {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-  const [todo, setTodo] = useState([]);
+  const [mytodo, setTodo] = useState([]);
 
   const addTodo = (event) => {
     event.preventDefault();
     console.log(`Title: ${title}`);
     console.log(`Description: ${description}` );
 
-    todo.push({
+    mytodo.push({
       title,
       description,
     });
-    setTodo([...todo]);
+    setTodo([...mytodo]);
 
     setTitle("");
     setDescription("");
   };
 
+  const deletTodo = (index)=>{
+    console.log("Delete ToDo" , index)
+    mytodo.splice(index, 1)
+    setTodo([...mytodo])
+  }
+
+  const editTodo = (index)=>{
+    console.log("Todo Edite", index);
+    const edt = prompt("Update Your ToDO", mytodo[index].title)
+    mytodo[index].title = edt
+    setTodo([...mytodo])
+  }
+
   return (
     <>
       <h1>Hello World + ToDo APP</h1>
-      <form onSubmit={addTodo} action="">
+      <form onSubmit={addTodo} >
         <input
           value={title}
           onChange={(e) => {
@@ -74,8 +87,29 @@ function App() {
         />
         <button>Add Todo</button>
       </form>
-    </>
-  );
+
+
+
+      <div>
+          {mytodo.length > 0 ? mytodo.map((item, index)=> {
+            return <div key={index}>
+
+            <h1>No {index + 1} </h1>
+            <p>Title: {item.title}</p>
+            <p>Description: {item.description}</p>
+            <button onClick={() =>{
+              editTodo(index)
+            }}> Edit </button>
+            <button onClick={()=>{
+              deletTodo(index)
+            }}> Delete </button>
+
+            </div>
+          }) : <h1>No Todo Found </h1>}
+
+           </div>
+   </>
+  )
 }
 
 export default App;
